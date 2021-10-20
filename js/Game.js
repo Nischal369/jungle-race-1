@@ -32,7 +32,8 @@ class Game {
 
    
     //create a group for bush and grass
-  
+    bush = new Group();
+    grass = new Group();
 
     // Adding fuel sprite in the game
     this.addSprites(bush, 4, bushImage, 0.02);
@@ -108,13 +109,20 @@ class Game {
 
   handleBush(index) {
     // Write a overlap function  for animal and bush 
-       //remove the bush
+    animals[index - 1].overlap(bush, function(collector, collected){
+      player.bush = 185;
+      //remove the bush
+      collected.remove();
+    });
   }
 
   handleGrass(index) {
     
       player.update();
     // Write a overlap function  for animal and grass
+    animals[index - 1].overlap(grass, function(collector, collected){
        //remove the grass
+       collected.remove();
+    });
   }
 }
